@@ -15,9 +15,6 @@
  */
 package com.impetus.code;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
-
 /**
  * <Prove description of functionality provided by this Type>
  * 
@@ -42,7 +39,4 @@ public class Places
             "Brea", "San Carlos", "Los Gatos", "Rancho Santa Margarita", "Camarillo", "Cypress", "Newport Coast",
             "San Joaquin Hills", "Folsom", "Arroyo Grande", "Malibu", "Sausalito", "Del Rio", "Green Valley",
             "Mission Viejo", "Aliso Viejo", "Stanford", "Encinitas", "Rancho Mirage" };
-    
-    
-
 }

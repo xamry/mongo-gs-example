@@ -57,18 +57,20 @@ public class GeospatialExample
         collection = getMongo().getDB(dbName).getCollection(collectionName);
         collection.ensureIndex(new BasicDBObject("loc", "2d"), indexName);
 
-        // addPlaces();
-        //findWithinCircle();
-        //findWithinBox();
+        addPlaces();
+        findWithinCircle();
+        findWithinBox();
         //findWithinPolygon();
         findCenterSphere();
-        //findNear();
-        //findNearSphere();
+        findNear();
+        findNearSphere();
 
     }
 
     private void findWithinCircle()
     {
+        
+        System.out.println("findWithinCircle\n----------------------\n");
         List circle = new ArrayList();
         circle.add(new double[] { 5, 5 }); // Centre of circle
         circle.add(1); // Radius
@@ -81,6 +83,7 @@ public class GeospatialExample
 
     private void findWithinBox()
     {
+        System.out.println("findWithinBox\n----------------------\n");
         List box = new ArrayList();
         box.add(new double[] { 4, 4 }); //Starting coordinate
         box.add(new double[]{6,6}); // Ending coordinate
@@ -93,6 +96,7 @@ public class GeospatialExample
 
     private void findWithinPolygon()
     {
+        System.out.println("findWithinPolygon\n----------------------\n");
         List polygon = new ArrayList();
         polygon.add(new double[] { 3, 3 }); //Starting coordinate
         polygon.add(new double[]{8,3}); // Ending coordinate
@@ -104,6 +108,7 @@ public class GeospatialExample
     }
     
     private void findNear() {
+        System.out.println("findNear\n----------------------\n");
         BasicDBObject filter = new BasicDBObject("$near", new double[] { 4, 4 });
         filter.put("$maxDistance", 2);
 
@@ -113,6 +118,7 @@ public class GeospatialExample
     }
     
     private void findNearSphere() {
+        System.out.println("findNearSphere\n----------------------\n");
         BasicDBObject filter = new BasicDBObject("$nearSphere", new double[] { 5, 5 });
         filter.put("$maxDistance", 0.06);
         // Radius of the earth: 3959.8728
@@ -122,6 +128,7 @@ public class GeospatialExample
     }
     
     private void findCenterSphere() {
+        System.out.println("findCenterSphere\n----------------------\n");
         List circle = new ArrayList();
         circle.add(new double[] { 5, 5 }); // Centre of circle
         circle.add(0.06); // Radius
@@ -171,12 +178,14 @@ public class GeospatialExample
 
     private void addPlaces()
     {
+        System.out.println("Adding places...");
         for (int i = 0; i < 100; i++)
         {
             double x = i % 10;
             double y = Math.floor(i / 10);
             addPlace(collection, Places.cities[i], new double[] { x, y });
         }
+        System.out.println("All places added");
     }
     
     private void addPlace(DBCollection collection, String name, final double[] location)
